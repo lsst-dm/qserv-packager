@@ -43,7 +43,7 @@ cd ${QSERV_TAP_REPO_PATH} &&
 # update repos
 git add upstream/qserv-${VERSIONTAG}.tar.gz &&
 git add ups/* &&
-git commit -m "Packaging qserv-${VERSIONTAG} with ${HASH_COMMIT}" &&
+git commit -a -m "Packaging qserv-${VERSIONTAG} with ${HASH_COMMIT}" &&
 git tag -f ${VERSIONTAG} &&
 git push origin -f ${VERSIONTAG} &&
 
