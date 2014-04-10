@@ -4,8 +4,8 @@ if [ -n "${QSERV_PKG_ROOT}" ]
 then
   if [ -r ${QSERV_PKG_ROOT} ]
   then
-    source ${QSERV_PKG_ROOT}/eupspkg/env.sh
-    source ${QSERV_PKG_ROOT}/eupspkg/functions.sh
+    source ${QSERV_PKG_ROOT}/env.sh
+    source ${QSERV_PKG_ROOT}/functions.sh
 
     if [ -e "${INSTALL_DIR}/eups/bin/setups.sh" ]
     then

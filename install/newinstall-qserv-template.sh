@@ -28,7 +28,7 @@ done
 cd $INSTALL_DIR
 
 export PREFIX=.qserv_install_scripts
-git archive --remote=${QSERV_PKG_REPO} --format=tar --prefix=${PREFIX}/ | tar xf - || {
+git archive --remote=${QSERV_PKG_REPO} --format=tar --prefix=${PREFIX}/ $PKG_TAG | tar xf - || {
     echo "Failed to download Qserv install scripts"
     exit 2
 }
