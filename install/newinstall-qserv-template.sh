@@ -35,7 +35,7 @@ git archive --remote=${QSERV_PKG_REPO} --format=tar --prefix=${PREFIX}/ $PKG_TAG
 
 INSTALLSCRIPT_DIR=${INSTALL_DIR}/${PREFIX}
 
-CFG_FILE="${INSTALLSCRIPT_DIR}/eupspkg/env.sh"
+CFG_FILE="${INSTALLSCRIPT_DIR}/env.sh"
 /bin/cat <<EOM >$CFG_FILE
 export INSTALL_DIR=${INSTALL_DIR}
 export VERSIONTAG=${VERSIONTAG}
@@ -47,7 +47,7 @@ EOM
 
 # TODO rename QSERV_PKG_ROOT ?
 export QSERV_PKG_ROOT=${INSTALLSCRIPT_DIR}
-${INSTALLSCRIPT_DIR}/eupspkg/install.sh ${FORCE_INSTALL} || {
+${INSTALLSCRIPT_DIR}/install/install.sh ${FORCE_INSTALL} || {
     echo "Failed to install Qserv using eups"
     exit 2
 }
