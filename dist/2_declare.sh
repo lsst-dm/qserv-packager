@@ -5,8 +5,19 @@ then
     exit 1
 fi
 
+mkdir -p ${INSTALL_DIR} ||
+{
+	echo "Unable to create install dir : ${INSTALL_DIR}"
+	exit 1
+}
 
-eups_install
+if [ ! -e "${INSTALL_DIR}/eups/bin/setups.sh" ]
+then
+    eups_install
+else
+    echo "INFO : using current eups version"
+fi
+. ${INSTALL_DIR}/eups/bin/setups.sh
 
 # If you don't have python >= 2.7 with numpy >= 1.5.1 and
 # matplotlib >=1.2.0, use Anaconda python distribution by installing
@@ -45,10 +56,3 @@ echo "Declaring Qserv packages"
 # will allow to use eups distrib install pkg, without version
 eups distrib declare --server-dir=${LOCAL_PKGROOT} -t current
 
-# Now check that we can install from the new distserver
-echo
-echo "REMOVING PACKAGES : $PWD"
-echo
-# ${INSTALL_DIR}/tmp/${product} will be removed during post processing
-cd ${INSTALL_DIR}
-# eups_remove_all

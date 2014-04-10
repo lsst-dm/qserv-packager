@@ -10,26 +10,29 @@ fi
 if [ ! -e "${INSTALL_DIR}/eups/bin/setups.sh" ]
 then
     eups_install
+else
+    echo "INFO : using current eups version"
 fi
+. ${INSTALL_DIR}/eups/bin/setups.sh
 
 echo "INFO : Distributing Qserv" &&
 eups distrib install git --repository="${EUPS_PKGROOT_LSST}" &&
 setup git &&
 cd ${QSERV_PKG_ROOT} &&
 
-echo "INFO : Creating eups TaP with current Qserv commit"
-HASH_COMMIT=$(git rev-parse --verify HEAD)
+HASH_COMMIT=$(git ls-remote ${QSERV_REPO} ${QSERV_BRANCH})
+echo "INFO : Creating eups TaP with current Qserv commit : ${HASH_COMMIT}"
 
 QSERV_TAP_REPO_PATH=${DEPS_DIR}/qserv
 rm -f ${QSERV_TAP_REPO_PATH}/upstream/*
-git archive --format=tar --prefix=qserv/ HEAD | gzip > ${QSERV_TAP_REPO_PATH}/upstream/qserv-${VERSIONTAG}.tar.gz ||
+git archive --format=tar --remote=${QSERV_REPO} --prefix=qserv/ ${QSERV_BRANCH} | gzip > ${QSERV_TAP_REPO_PATH}/upstream/qserv-${VERSIONTAG}.tar.gz ||
 {
     echo "ERROR : Unable to build qserv archive" && 
     exit 1
 }
 
 rm -rf ${QSERV_TAP_REPO_PATH}/ups/*
-git archive --format=tar HEAD ups | tar -x -C ${QSERV_TAP_REPO_PATH} ||
+git archive --format=tar --remote=${QSERV_REPO} ${QSERV_BRANCH} ups | tar -x -C ${QSERV_TAP_REPO_PATH} ||
 {
     echo "ERROR : Unable to build qserv archive" && 
     exit 1
@@ -73,7 +76,7 @@ echo "INFO : Downloading scisql"
     echo "WARN : unable to download scisql from ${SCISQL_URL}"
 fi
 
-sed "s/%VERSIONTAG%/${VERSIONTAG}/g" ${QSERV_PKG_ROOT}/newinstall-qserv-template.sh | sed "s/%DISTSERVERNAME%/${DISTSERVERNAME}/g" > ${LOCAL_PKGROOT}/newinstall-qserv-${VERSIONTAG}.sh 
+sed "s/%VERSIONTAG%/${VERSIONTAG}/g" ${QSERV_PKG_ROOT}/install/newinstall-qserv-template.sh | sed "s/%DISTSERVERNAME%/${DISTSERVERNAME}/g" > ${LOCAL_PKGROOT}/newinstall-qserv-${VERSIONTAG}.sh 
 #ln -s ${LOCAL_PKGROOT}/newinstall-qserv-$VERSIONTAG.sh ${LOCAL_PKGROOT}/newinstall-qserv.sh
 
 upload_to_distserver

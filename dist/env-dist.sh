@@ -1,6 +1,6 @@
 # used for both installation and package distribution :
 
-export WORK_DIR=/opt/data-fjammes/qserv-packager
+export INSTALL_DIR=/opt/data-fjammes/qserv-packager
 TICKET=DM-405
 
 # Package this branch head of QSERV_REPO
@@ -29,7 +29,7 @@ export REPOSITORY_BASE_CONTRIB=git://git.lsstcorp.org/contrib/eupspkg
 export REPOSITORY_BASE_DMS=git://git.lsstcorp.org/LSST/DMS
 export EUPSPKG_REPOSITORY_PATH='git://git.lsstcorp.org/contrib/eupspkg/$PRODUCT|git://git.lsstcorp.org/LSST/DMS/$PRODUCT'
 export EUPSPKG_SOURCE=git
-export LOCAL_PKGROOT=${WORK_DIR}/${DISTSERVERNAME}
+export LOCAL_PKGROOT=${INSTALL_DIR}/${DISTSERVERNAME}
 export DEPS_DIR=${QSERV_PKG_ROOT}/dist/dependencies
 export QSERV_REPO=git://dev.lsstcorp.org/LSST/DMS/qserv
 export DATA_REPO=git://dev.lsstcorp.org/LSST/DMS/testdata/qservdata.git
