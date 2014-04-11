@@ -67,6 +67,7 @@ eups_dist_create () {
     cmd="eups declare ${product} ${version} -r ." &&
     echo "CMD : $cmd" &&
     $cmd &&
+    eups list &&
     cmd="eups distrib create --nodepend --server-dir=${LOCAL_PKGROOT} -f generic -d eupspkg -t current ${product} ${version}"
     echo "Running : $cmd" &&
     $cmd &&
@@ -82,6 +83,11 @@ eups_dist_create () {
 eups_remove_all() {
     echo "INFO : removing all packages except git"
     eups list  | grep -v git | cut -f1 |  awk '{print "eups remove -t current --force "$1}' | bash
+}
+
+eups_undeclare_all() {
+    echo "INFO : removing all packages except git"
+    eups list  | grep -v git | cut -f1 |  awk '{print "eups undeclare --force "$1}' | bash
 }
 
 eups_unsetup_all() {

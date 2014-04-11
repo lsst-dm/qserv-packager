@@ -29,7 +29,7 @@ eups distrib install git --repository="http://sw.lsstcorp.org/eupspkg" &&
 setup git
 
 
-eups_remove_all
+eups_undeclare_all
 rm -rf ${LOCAL_PKGROOT}/*
 eups declare python system -r none -m none
 eups declare numpy system -r none -m none
@@ -55,8 +55,4 @@ eups_dist kazoo 1.3.1 ||
     echo "ERROR : unable to create all packages"
     exit 2
 }
-
-echo "Declaring Qserv packages"
-# will allow to use eups distrib install pkg, without version
-eups distrib declare --server-dir=${LOCAL_PKGROOT} -t current
 
