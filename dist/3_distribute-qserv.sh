@@ -1,3 +1,6 @@
+eval `ssh-agent -s`
+ssh-add ${HOME}/.ssh/id_rsa
+
 BASEDIR=$(dirname $0)
 source ${BASEDIR}/setup-dist.sh
 if [ -n "${SETUP_DIST}" ]
