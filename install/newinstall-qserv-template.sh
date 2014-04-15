@@ -14,7 +14,7 @@ INSTALL_DIR=$PWD
 export EUPS_PKGROOT="http://datasky.in2p3.fr/qserv/${DISTSERVERNAME}"
 
 QSERV_PKG_REPO=git://dev.lsstcorp.org/contrib/qserv-packager
-PKG_TAG=DM-58
+PKG_TAG=2.0
 
 while [ $# -gt 0 ]; do
     case "$1" in 
