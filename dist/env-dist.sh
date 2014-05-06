@@ -1,10 +1,10 @@
 # used for both installation and package distribution :
 
 export INSTALL_DIR=/opt/data-fjammes/qserv-packager
-TICKET=DM-405
+TICKET=master
 
 # Package this branch head of QSERV_REPO
-QSERV_BRANCH=tickets/${TICKET}
+QSERV_BRANCH=master
 
 # Qserv TaP version
 export VERSIONTAG=6.0.0rc1-${TICKET}

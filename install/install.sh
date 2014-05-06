@@ -138,6 +138,8 @@ setup qserv || {
 
 SETUP_SCRIPT=${INSTALL_DIR}/setup-qserv.sh
 cat > ${SETUP_SCRIPT} <<-EOF
+export EUPS_PKGROOT=${EUPS_PKGROOT}
+export EUPS_PKGROOT_LSST=${EUPS_PKGROOT_LSST}
 source ${INSTALL_DIR}/eups/bin/setups.sh
 setup qserv
 EOF

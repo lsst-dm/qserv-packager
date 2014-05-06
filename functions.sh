@@ -87,7 +87,7 @@ eups_remove_all() {
 
 eups_undeclare_all() {
     echo "INFO : removing all packages except git"
-    eups list  | grep -v git | cut -f1 |  awk '{print "eups undeclare --force "$1}' | bash
+    eups list  | grep -v git | cut -f1 |  awk '{print "eups undeclare --force "$1" "$2}' | bash
 }
 
 eups_unsetup_all() {
